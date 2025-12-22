@@ -1,0 +1,63 @@
+alert tcp any any -> $HOME_NET any (msg:"TCP Port Scan Detected"; flags:S;
+threshold:type both, track by_src, count 10, seconds 5; sid:1000002;
+
+meaning of these:
+1) alert =  it generate the alert when the packert has been arrived. if the given rules are the matches then and tthen it shows the alert;
+2) tcp = it is protocol.
+3) any any = it shows the source ip/address and port address... 
+4) -> = it shoes the flow that how the packet has been sent sorce and destination.
+5)$HOME_NET any =$HOME_NET → your  network (Ubuntu machine)
+any → any destination port (22, 80, 443, etc.)
+6)msg : this shows the message  when the packet has been detected
+7)flges = it repersent the s= synchronize when the syn packet detected
+8)threshold:type both, track by_src, count 10, seconds 5
+type both	Apply threshold to alerts and logs
+track by_src	Track packets by source IP
+count 10	Trigger alert after 10 SYN packets
+seconds 5	Within 5 
+1. What is IDS?
+
+**IDS (Intrusion Detection System)** is a security system that **monitors network traffic** and **detects suspicious or malicious activities** and generates alerts.
+
+---
+
+2. Difference between IDS and IPS
+
+| IDS                       | IPS                            |
+| ------------------------- | ------------------------------ |
+| Detects attacks           | Detects and blocks attacks     |
+| Works in passive mode     | Works in active mode           |
+| Generates alerts only     | Prevents attacks automatically |
+| Example: Snort (IDS mode) | Example: Snort (IPS mode)      |
+
+3. What is Snort= is an open-source Network Intrusion Detection and Prevention System (NIDS/NIPS)used to analyze network traffic in real time and detect attacks using rules.
+
+4. What is port scanning?
+
+Port scanning is a technique used to check which ports are open, closed, or filtered on a target system to identify running services or vulnerabilities.
+
+5. What is Nmap used for?
+
+Nmap (Network Mapper) is used for:
+
+ Port scanning
+ Network discovery
+ Identifying open ports and services
+Security auditing
+
+
+6. What is HOME_NET?
+
+HOME_NET is a Snort variable that defines the internal or protected network IP range that Snort monitors for attacks.
+
+ipvar HOME_NET 192.168.1.0/24
+7. What is a Snort rule?
+
+A **Snort rule** is a set of instructions that tells Snort **what traffic to detect and alert on, based on protocol, IP, port, and packet behavior.
+
+
+8. What is SID in Snort?
+
+SID (Snort ID) is a unique identifier assigned to each Snort rule to identify and manage rules.
+User-defined rules use SID values ≥ 1000000.
+
